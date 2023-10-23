@@ -1,11 +1,13 @@
 ﻿namespace FkThat.Console;
 
+using System.Diagnostics.CodeAnalysis;
+
 using Console = System.Console;
 
 /// <summary>
 /// Represents the system console.
 /// </summary>
-public sealed class SystemConsole : IConsoleText
+public sealed class SystemConsole : IConsoleText, IConsoleStdio
 {
     /// <inheritdoc/>
     public TextReader In => Console.In;
@@ -15,4 +17,16 @@ public sealed class SystemConsole : IConsoleText
 
     /// <inheritdoc/>
     public TextWriter Error => Console.Error;
+
+    /// <inheritdoc/>
+    [ExcludeFromCodeCoverage]
+    public Stream OpenStandardInput() => Console.OpenStandardInput();
+
+    /// <inheritdoc/>
+    [ExcludeFromCodeCoverage]
+    public Stream OpenStandardOutput() => Console.OpenStandardOutput();
+
+    /// <inheritdoc/>
+    [ExcludeFromCodeCoverage]
+    public Stream OpenStandardError() => Console.OpenStandardError();
 }
