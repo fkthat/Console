@@ -7,7 +7,7 @@ using Console = System.Console;
 /// <summary>
 /// Represents the system console.
 /// </summary>
-public sealed class SystemConsole : IConsoleText, IConsoleStdio
+public sealed class SystemConsole : IConsoleText, IConsoleStdio, IConsoleKeyboard
 {
     /// <inheritdoc/>
     public TextReader In => Console.In;
@@ -20,6 +20,10 @@ public sealed class SystemConsole : IConsoleText, IConsoleStdio
 
     /// <inheritdoc/>
     [ExcludeFromCodeCoverage]
+    public bool KeyAvailable => Console.KeyAvailable;
+
+    /// <inheritdoc/>
+    [ExcludeFromCodeCoverage]
     public Stream OpenStandardInput() => Console.OpenStandardInput();
 
     /// <inheritdoc/>
@@ -29,4 +33,8 @@ public sealed class SystemConsole : IConsoleText, IConsoleStdio
     /// <inheritdoc/>
     [ExcludeFromCodeCoverage]
     public Stream OpenStandardError() => Console.OpenStandardError();
+
+    /// <inheritdoc/>
+    [ExcludeFromCodeCoverage]
+    public ConsoleKeyInfo ReadKey(bool intercept) => Console.ReadKey(intercept);
 }
